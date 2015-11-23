@@ -18,11 +18,12 @@ class MovieSpider(scrapy.Spider):
         movieList = response.xpath('//div[contains(@class, "movieList")]/div[contains(@class,"movieListOne")]')
         for movie in movieList:
             item = MoviesItem()
-            item.title = movie.xpath('h3/a/@title').extract()
-            item.link = movie.xpath('h3/a/@href').extract()
+            item['title'] = movie.xpath('h3/a/@title').extract()[0]
+            item['link'] = movie.xpath('h3/a/@href').extract()[0]
             desc = movie.xpath('p/text()').extract()
-            item.actors = desc[0]
-            item.playtime = desc[len(desc)-1]
+            item['actors'] = desc[0]
+            item['updatetime'] = desc[1]
+            item['playtime'] = desc[len(desc)-1]
             yield item
 
             # pp = movie.xpath('/p').extract()

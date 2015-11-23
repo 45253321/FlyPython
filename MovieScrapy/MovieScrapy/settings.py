@@ -15,3 +15,6 @@ NEWSPIDER_MODULE = 'MovieScrapy.spiders'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'MovieScrapy (+http://www.yourdomain.com)'
+ITEM_PIPELINES = {
+    'MovieScrapy.pipelines.MoviePipline': 300,
+}
